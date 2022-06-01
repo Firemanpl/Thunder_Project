@@ -7,10 +7,10 @@ int fulfilmentR, fulfilmentG, fulfilmentB = 0;
 uint8_t savedBrightness;
 uint64_t savedTime, savedTime1;
 uint64_t actualTime;
-uint8_t f;
+uint8_t f, f1;
 bool lock = 0;
 bool lock1 = 1;
-void RGB(uint8_t, uint8_t, uint8_t, uint8_t);
+void RGB(uint8_t, uint8_t, uint8_t);
 void thunderFunction();
 
 void setup()
@@ -25,10 +25,10 @@ void setup()
 void loop()
 {
   actualTime = millis();
-  if (actualTime - savedTime >= 100UL && lock == 0)
+  if (actualTime - savedTime >= 100UL && lock == 0) //
   {
     savedTime = actualTime;
-    RGB(255, 255, 255, 255);
+    RGB(255, 255, 255);
     lock = 1;
     lock1 = 0;
   }
@@ -36,14 +36,19 @@ void loop()
   {
     savedTime1 = actualTime;
 
-    if (f >= 0)
+    if (f > 0)
     {
       f--;
-      RGB(f, 255, 255, f);
+      RGB(f, 255, 255);
     }
     if (f == 0)
     {
-      RGB(0, 0, 0, 0);
+      f1--;
+      RGB(0, f1, f1);
+    }
+    if (f1 == 0)
+    {
+      RGB(0, 0, 0);
       lock1 = 1;
     }
   }
@@ -72,28 +77,27 @@ void thunderFunction()
   // }
 }
 
-void RGB(uint8_t r, uint8_t g, uint8_t b, uint8_t brightness)
+void RGB(uint8_t r, uint8_t g, uint8_t b)
 {
-  if (r > 0 && g > 0 && b > 0)
-  {
-    int cetera = 255 - brightness;
-    fulfilmentR = fulfilmentR - cetera;
-    fulfilmentG = fulfilmentG - cetera;
-    fulfilmentB = fulfilmentB - cetera;
-    if (fulfilmentR <= 0)
-    {
-      fulfilmentR = 0;
-    }
-    if (fulfilmentG <= 0)
-    {
-      fulfilmentG = 0;
-    }
-    if (fulfilmentB <= 0)
-    {
-      fulfilmentB = 0;
-    }
-  }
-
+  // if (r > 0 && g > 0 && b > 0)
+  // {
+  //   int cetera = 255 - brightness;
+  //   fulfilmentR = fulfilmentR - cetera;
+  //   fulfilmentG = fulfilmentG - cetera;
+  //   fulfilmentB = fulfilmentB - cetera;
+  //   if (fulfilmentR <= 0)
+  //   {
+  //     fulfilmentR = 0;
+  //   }
+  //   if (fulfilmentG <= 0)
+  //   {
+  //     fulfilmentG = 0;
+  //   }
+  //   if (fulfilmentB <= 0)
+  //   {
+  //     fulfilmentB = 0;
+  //   }
+  // }
   analogWrite(Rpin, fulfilmentR);
   analogWrite(Gpin, fulfilmentG);
   analogWrite(Bpin, fulfilmentB);
