@@ -1,8 +1,8 @@
 #include <Arduino.h>
-#define Rpin 1 // Pin must be with PWM
-#define Gpin 2 // Pin must be with PWM
-#define Bpin 3 // Pin must be with PWM
-#define feedback_pin_with_interrupt_5 4
+#define Rpin 10 // Pin must be with PWM
+#define Gpin 9  // Pin must be with PWM
+#define Bpin 11 // Pin must be with PWM
+#define feedback_pin_with_interrupt_5 3
 int fulfilmentR, fulfilmentG, fulfilmentB = 0;
 uint8_t savedBrightness;
 uint64_t savedTime, savedTime1;
@@ -10,11 +10,13 @@ uint64_t actualTime;
 uint8_t f, f1;
 bool lock = 0;
 bool lock1 = 1;
+bool lock2 = 0;
 void RGB(uint8_t, uint8_t, uint8_t);
 void thunderFunction();
 
 void setup()
 {
+
   pinMode(feedback_pin_with_interrupt_5, INPUT_PULLUP);
   attachInterrupt(digitalPinToInterrupt(feedback_pin_with_interrupt_5), thunderFunction, LOW);
   pinMode(Rpin, OUTPUT);
@@ -24,15 +26,21 @@ void setup()
 
 void loop()
 {
-  actualTime = millis();
-  if (actualTime - savedTime >= 100UL && lock == 0) //
+  if (lock2 == 0)
+  {
+    RGB(255, 255, 255); // there is initial value of color
+    lock2 = 1;
+  }
+
+  actualTime = micros();
+  if (actualTime - savedTime >= 100000UL && lock == 0) //
   {
     savedTime = actualTime;
     RGB(255, 255, 255);
     lock = 1;
     lock1 = 0;
   }
-  if (actualTime - savedTime1 >= 10UL && lock == 1 && lock1 == 0)
+  if (actualTime - savedTime1 >= 100UL && lock == 1 && lock1 == 0)
   {
     savedTime1 = actualTime;
 
@@ -63,19 +71,6 @@ void thunderFunction()
   f1 = 255;
   lock = 0;
   lock1 = 1;
-  // RGB(255, 255, 255, 255);
-  // delay(100);
-
-  // for (size_t f = 255; f >= 0; f--)
-  // {
-  //   if (f == 0)
-  //   {
-  //     RGB(0, 0, 0, 0);
-  //     return;
-  //   }
-  //   RGB(f, 255, 255, f);
-  //   delay(10);
-  // }
 }
 
 void RGB(uint8_t r, uint8_t g, uint8_t b)
