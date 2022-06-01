@@ -60,6 +60,7 @@ void thunderFunction()
   fulfilmentG = 255;
   fulfilmentB = 255;
   f = 255;
+  f1 = 255;
   lock = 0;
   lock1 = 1;
   // RGB(255, 255, 255, 255);
