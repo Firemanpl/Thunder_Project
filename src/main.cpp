@@ -80,25 +80,9 @@ void thunderFunction()
 
 void RGB(uint8_t r, uint8_t g, uint8_t b)
 {
-  // if (r > 0 && g > 0 && b > 0)
-  // {
-  //   int cetera = 255 - brightness;
-  //   fulfilmentR = fulfilmentR - cetera;
-  //   fulfilmentG = fulfilmentG - cetera;
-  //   fulfilmentB = fulfilmentB - cetera;
-  //   if (fulfilmentR <= 0)
-  //   {
-  //     fulfilmentR = 0;
-  //   }
-  //   if (fulfilmentG <= 0)
-  //   {
-  //     fulfilmentG = 0;
-  //   }
-  //   if (fulfilmentB <= 0)
-  //   {
-  //     fulfilmentB = 0;
-  //   }
-  // }
+  fulfilmentR = r;
+  fulfilmentG = g;
+  fulfilmentB = b;
   analogWrite(Rpin, fulfilmentR);
   analogWrite(Gpin, fulfilmentG);
   analogWrite(Bpin, fulfilmentB);
