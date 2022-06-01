@@ -4,6 +4,7 @@
 #define Bpin 3 // Pin must be with PWM
 #define feedback_pin_with_interrupt_5 4
 int fulfilmentR, fulfilmentG, fulfilmentB = 0;
+uint8_t savedBrightness;
 void RGB(uint8_t, uint8_t, uint8_t, uint8_t);
 void thunderFunction();
 void setup()
@@ -21,6 +22,9 @@ void loop()
 
 void thunderFunction()
 {
+  fulfilmentR = 255;
+  fulfilmentG = 255;
+  fulfilmentB = 255;
   RGB(255, 255, 255, 255);
   delay(100);
   for (size_t f = 255; f >= 0; f--)
