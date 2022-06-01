@@ -31,6 +31,7 @@ void thunderFunction()
   {
     if (f == 0)
     {
+      RGB(0, 0, 0, 0);
       return;
     }
     RGB(f, 255, 255, f);
