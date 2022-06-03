@@ -16,7 +16,6 @@ void thunderFunction();
 
 void setup()
 {
-
   pinMode(feedback_pin_with_interrupt_5, INPUT_PULLUP);
   attachInterrupt(digitalPinToInterrupt(feedback_pin_with_interrupt_5), thunderFunction, LOW);
   pinMode(Rpin, OUTPUT);
@@ -29,7 +28,6 @@ void loop()
   if (lock2 == 0)
   {
     RGB(255, 255, 255); // there is initial value of color
-    lock2 = 1;
   }
 
   actualTime = micros();
@@ -64,6 +62,7 @@ void loop()
 
 void thunderFunction()
 {
+  lock2 = 1;
   fulfilmentR = 255;
   fulfilmentG = 255;
   fulfilmentB = 255;
