@@ -11,7 +11,8 @@ uint8_t f, f1;
 bool lock = 0;
 bool lock1 = 1;
 bool lock2 = 0;
-uint8_t brightnessTest, fadeAmount;
+uint8_t brightnessTest;
+uint8_t fadeAmount = 1;
 void RGB(uint8_t, uint8_t, uint8_t);
 void thunderFunction();
 
@@ -70,7 +71,6 @@ void loop()
 
 void thunderFunction()
 {
-
   fulfilmentR = 255;
   fulfilmentG = 255;
   fulfilmentB = 255;
