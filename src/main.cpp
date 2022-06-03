@@ -5,12 +5,13 @@
 #define feedback_pin_with_interrupt_5 3
 int fulfilmentR, fulfilmentG, fulfilmentB = 0;
 uint8_t savedBrightness;
-uint64_t savedTime, savedTime1;
+uint64_t savedTime, savedTime1, savedTime2;
 uint64_t actualTime;
 uint8_t f, f1;
 bool lock = 0;
 bool lock1 = 1;
 bool lock2 = 0;
+uint8_t brightnessTest, fadeAmount;
 void RGB(uint8_t, uint8_t, uint8_t);
 void thunderFunction();
 
@@ -25,15 +26,19 @@ void setup()
 
 void loop()
 {
-  if (lock2 == 0)
+  actualTime = micros();
+  if (actualTime - savedTime >= 3000UL && lock2 == 0)
   {
-    for (size_t i = 0; i < 255; i++)
+    savedTime = actualTime;
+    brightnessTest = brightnessTest + fadeAmount;
+    if (brightnessTest <= 0 || brightnessTest >= 255)
     {
-      RGB(255, 255, 255);
+      fadeAmount = -fadeAmount;
     }
+
+    RGB(brightnessTest, brightnessTest, brightnessTest);
   }
 
-  actualTime = micros();
   if (actualTime - savedTime >= 100000UL && lock == 0)
   {
     savedTime = actualTime;
