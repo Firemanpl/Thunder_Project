@@ -27,11 +27,14 @@ void loop()
 {
   if (lock2 == 0)
   {
-    RGB(255, 255, 255); // there is initial value of color
+    for (size_t i = 0; i < 255; i++)
+    {
+      RGB(255, 255, 255);
+    }
   }
 
   actualTime = micros();
-  if (actualTime - savedTime >= 100000UL && lock == 0) //
+  if (actualTime - savedTime >= 100000UL && lock == 0)
   {
     savedTime = actualTime;
     RGB(255, 255, 255);
