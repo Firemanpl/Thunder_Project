@@ -70,7 +70,7 @@ void loop()
 
 void thunderFunction()
 {
-  lock2 = 1;
+
   fulfilmentR = 255;
   fulfilmentG = 255;
   fulfilmentB = 255;
@@ -78,6 +78,7 @@ void thunderFunction()
   f1 = 255;
   lock = 0;
   lock1 = 1;
+  lock2 = 1;
 }
 
 void RGB(uint8_t r, uint8_t g, uint8_t b)
