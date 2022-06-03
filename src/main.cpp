@@ -27,9 +27,9 @@ void setup()
 void loop()
 {
   actualTime = micros();
-  if (actualTime - savedTime >= 3000UL && lock2 == 0)
+  if (actualTime - savedTime2 >= 3000UL && lock2 == 0)
   {
-    savedTime = actualTime;
+    savedTime2 = actualTime;
     brightnessTest = brightnessTest + fadeAmount;
     if (brightnessTest <= 0 || brightnessTest >= 255)
     {
